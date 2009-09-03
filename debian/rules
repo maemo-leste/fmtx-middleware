@@ -1,0 +1,28 @@
+#!/usr/bin/make -f
+# -*- makefile -*-
+
+build:
+
+clean:
+	dh_testdir
+	dh_clean
+
+binary:
+	dh_testdir
+	dh_testroot
+	dh_clean -k
+	mkdir -p debian/fmtx-middleware
+	cp -ra files/* debian/fmtx-middleware
+	dh_installdocs -pfmtx-middleware
+	dh_installchangelogs -pfmtx-middleware
+	dh_compress
+	dh_fixperms
+	dh_strip
+	dh_makeshlibs
+	dh_shlibdeps
+	dh_installdeb
+	dh_gencontrol
+	dh_md5sums
+	dh_builddeb
+
+.PHONY: build clean binary

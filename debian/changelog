@@ -1,0 +1,322 @@
+fmtx-middleware (0.47+0m5) unstable; urgency=low
+
+  * This entry has been added by BIFH queue processor
+    Suffix +0m5 added to package revision
+
+ -- Attiq Malik <ext-attiq.1.malik@nokia.com>  Thu, 03 Sep 2009 10:43:30 +0300
+
+fmtx-middleware (0.47) unstable; urgency=low
+
+  * Fixes: NB#134388 - FMTX is enabled automatically
+
+ -- Maemo Multimedia <multimedia@maemo.org>  Wed, 2 Sep 2009 10:00:00 +0300
+ 
+fmtx-middleware (0.46) unstable; urgency=low
+
+  * Fixes: NB#134388 - FMTX is enabled automatically
+
+ -- Maemo Multimedia <multimedia@maemo.org>  Fri, 21 Aug 2009 16:00:00 +0300
+ 
+fmtx-middleware (0.45) unstable; urgency=low
+
+  * Fixes: NB#133963 - FMTX power decreased incorrectly when charger is connected
+  * Fixes: NB#133962 - Power values for ETSI must be read from calibration data
+
+ -- Maemo Multimedia <multimedia@maemo.org>  Wed, 20 Aug 2009 9:00:00 +0300
+ 
+fmtx-middleware (0.44) unstable; urgency=low
+
+  * Fixes: NB#130610 - FM transmitter becomes frozen after 15 minutes of idle.
+  * Fixes: NB#130602 - [REGF]FM TX work even after connecting the wired head set
+
+ -- Maemo Multimedia <multimedia@maemo.org>  Fri, 14 Aug 2009 13:30:00 +0300
+ 
+fmtx-middleware (0.43) unstable; urgency=low
+
+  * Fixes: NB#125709 - Audio is not heard from device loud speaker when USB
+    is connected and FMTX is disabled
+
+ -- Maemo Multimedia <multimedia@maemo.org>  Sat, 8 Aug 2009 14:30:00 +0300
+ 
+fmtx-middleware (0.42) unstable; urgency=low
+
+  * Fixes: NB#128271 - FMTX does not stop sending signal in 60 seconds when
+    audio modulation to signal has ended
+
+ -- Maemo Multimedia <multimedia@maemo.org>  Fri, 17 Jul 2009 15:30:00 +0300
+ 
+fmtx-middleware (0.41) unstable; urgency=low
+
+  * Cleared RDS text at startup
+  * RDS Station name is now forced to be 8 characters long
+  * Fixes: NB#118497 - Low RDS Signal strength
+
+ -- Maemo Multimedia <multimedia@maemo.org>  Wed, 8 Jul 2009 11:00:00 +0300
+ 
+fmtx-middleware (0.40) unstable; urgency=low
+
+  * Low RDS Signal strength fix
+
+ -- Maemo Multimedia <multimedia@maemo.org>  Tue, 30 Jun 2009 10:00:00 +0300
+
+fmtx-middleware (0.39) unstable; urgency=low
+
+  * Fixes: NB#123114 - FM-Tx channel spacing in FCC mode not correct
+
+ -- Maemo Multimedia <multimedia@maemo.org>  Wed, 17 Jun 2009 13:30:00 +0300
+ 
+fmtx-middleware (0.38) unstable; urgency=low
+
+  * Fixed coverity warnings
+
+ -- Maemo Multimedia <multimedia@maemo.org>  Wed, 10 Jun 2009 13:00:00 +0300
+ 
+fmtx-middleware (0.37) unstable; urgency=low
+
+  * Fixed coverity warnings
+  * Updated documentation to gtk-doc style
+
+ -- Maemo Multimedia <multimedia@maemo.org>  Thu, 4 Jun 2009 18:00:00 +0300
+ 
+fmtx-middleware (0.36) unstable; urgency=low
+
+  * Added documentation package
+
+ -- Stefan Kost <stefan.kost@nokia.com>  Wed, 20 May 2009 17:00:00 +0300
+ 
+fmtx-middleware (0.35) unstable; urgency=low
+
+  * Fixes: NB#111298 - NP: Audio- While enabling FM transmitter UI "Disconnect charger from power supply to save energy" Info banner is displaying.
+
+ -- Stefan Kost <stefan.kost@nokia.com>  Wed, 29 Apr 2009 17:00:00 +0300
+ 
+fmtx-middleware (0.34) unstable; urgency=low
+
+  * Fix FMTX audio routing the first time device is booted.
+
+ -- Stefan Kost <stefan.kost@nokia.com>  Wed, 29 Apr 2009 17:00:00 +0300
+ 
+fmtx-middleware (0.33) unstable; urgency=low
+
+  * Internal tone generator is now used to generate chirping tone instead of using pilot tone
+  * Fixes: NB#112307 - Fm-tx chirping feature implemented using old method
+
+ -- Stefan Kost <stefan.kost@nokia.com>  Mon, 27 Apr 2009 13:30:00 +0300
+ 
+fmtx-middleware (0.32) unstable; urgency=low
+
+  * Changed default frequency to 88.1 MHz
+  * Fixes: NB#107899 - FM-tx application frequencies
+
+ -- Stefan Kost <stefan.kost@nokia.com>  Wed, 22 Apr 2009 15:00:00 +0300
+ 
+fmtx-middleware (0.31) unstable; urgency=low
+
+  * Pre-emphasis is now set
+  * FMTX is now disabled if fmtx production bits can't be read. B3 prototypes are the first, where those are programmed
+  * Fixes: NB#108421 - Default setting for fmtx region must be changed
+
+ -- Stefan Kost <stefan.kost@nokia.com>  Mon, 20 Apr 2009 12:00:00 +0300
+ 
+fmtx-middleware (0.30) unstable; urgency=low
+
+  * Removed dependency to libosso
+  * New signal "Error" to inform UI when fmtx is shut down
+
+ -- Stefan Kost <stefan.kost@nokia.com>  Wed, 15 Apr 2009 12:00:00 +0300
+ 
+fmtx-middleware (0.29) unstable; urgency=low
+
+  * Fixes: NB#109422 - 'Unable to use FM transmitter' displayed when trying to launch FM transmitter dialog from Media Player
+
+ -- Stefan Kost <stefan.kost@nokia.com>  Tue, 14 Apr 2009 14:30:00 +0300
+ 
+fmtx-middleware (0.28) unstable; urgency=low
+
+  * Fixes: NB#107899 - FM-tx application frequencies
+  * Fixes: NB#107882 - Noise in FM-tx transmission
+  * Fixes: NB#107918 - FM-tx charger power drop
+  * Fixes: NB#101294 - FM transmission is prone to excessive noise
+
+ -- Stefan Kost <stefan.kost@nokia.com>  Thu, 26 Mar 2009 10:00:00 +0300
+
+fmtx-middleware (0.27) unstable; urgency=low
+
+  * Fixes: NB#106187 - FM-tx sending with low power with pilot disabled.
+
+ -- Stefan Kost <stefan.kost@nokia.com>  Fri, 20 Mar 2009 12:00:00 +0300
+ 
+fmtx-middleware (0.26) unstable; urgency=low
+
+  * Locale directory changed
+
+ -- Stefan Kost <stefan.kost@nokia.com>  Thu, 19 Mar 2009 12:00:00 +0300
+ 
+fmtx-middleware (0.25) unstable; urgency=low
+
+  * Version bump for integration
+
+ -- Stefan Kost <stefan.kost@nokia.com>  Thu, 19 Mar 2009 11:00:00 +0300
+ 
+fmtx-middleware (0.24) unstable; urgency=low
+
+  * Fixes: NB#105426 - TV-out cable usage prevents FM transmitter usage
+  * Added command line option -d to daemonize fmtxd at startup
+
+ -- Stefan Kost <stefan.kost@nokia.com>  Thu, 12 Mar 2009 11:30:00 +0300
+ 
+fmtx-middleware (0.23) unstable; urgency=low
+
+  * Fixes: Fixed the startup script
+
+ -- Stefan Kost <stefan.kost@nokia.com>  Tue, 10 Mar 2009 13:30:00 +0300
+
+fmtx-middleware (0.22) unstable; urgency=low
+
+  * Fixes: NB#104058 - FM Tx changing from ON to OFF whenever USB/Headset connecting to the device
+
+ -- Stefan Kost <stefan.kost@nokia.com>  Tue, 10 Mar 2009 12:00:00 +0300
+
+fmtx-middleware (0.21) unstable; urgency=low
+
+  * Added the startup script for fmtxd.
+
+ -- Stefan Kost <stefan.kost@nokia.com>  Wed, 4 Mar 2009 13:45:00 +0300
+
+fmtx-middleware (0.20) unstable; urgency=low
+
+  * Fixes: NB#101685
+  * middleware now terminates itself after 1 min of inactivity if tx is off
+
+ -- Stefan Kost <stefan.kost@nokia.com>  Wed, 4 Mar 2009 17:00:00 +0300
+
+fmtx-middleware (0.19) unstable; urgency=low
+
+  * Fixes: NB#103900
+
+ -- Stefan Kost <stefan.kost@nokia.com>  Mon, 3 Mar 2009 17:00:00 +0300
+
+fmtx-middleware (0.18) unstable; urgency=low
+
+  * Fixed startup problem
+
+ -- Stefan Kost <stefan.kost@nokia.com>  Fri, 20 Feb 2009 17:00:00 +0300
+
+fmtx-middleware (0.17) unstable; urgency=low
+
+  * Fixed dependency problems
+
+ -- Stefan Kost <stefan.kost@nokia.com>  Mon, 16 Feb 2009 13:00:00 +0300
+
+fmtx-middleware (0.16) unstable; urgency=low
+
+  * Fixed startup problem
+  * Tx power is now dropped when charger is plugged in
+
+ -- Stefan Kost <stefan.kost@nokia.com>  Mon, 16 Feb 2009 12:00:00 +0300
+
+fmtx-middleware (0.15) unstable; urgency=low
+
+  * User is now notified when fmtx is turned off by external event
+  * New property startable can be used to check if fmtx can be powered on.
+
+ -- Stefan Kost <stefan.kost@nokia.com>  Thu, 4 Feb 2009 15:00:00 +0300
+
+fmtx-middleware (0.14) unstable; urgency=low
+
+  * Fmtx now chirps when user is not playing any music
+  * Reorganized code
+  * Transmitter is now shut down, when some usb-device is connected (excluding charger)
+
+ -- Stefan Kost <stefan.kost@nokia.com>  Tue, 3 Feb 2009 11:00:00 +0300
+
+fmtx-middleware (0.13) unstable; urgency=low
+
+  * Removed dependency to libosso, liblocation and pulseaudio
+  * Chirping is now implemented using feature in the fm transmitter chip
+  * Transmitter is now disabled when device enters offline mode
+  * Transmitter is now disabled when headphones are connected
+  * Removed country specific settings table, settings are now queried from the driver
+  * Transmitter is now enabled at startup if it was enabled at shutdown
+
+ -- Stefan Kost <stefan.kost@nokia.com>  Wed, 16 Jan 2009 17:00:00 +0300
+
+fmtx-middleware (0.12) unstable; urgency=low
+
+  * Corrected pulseaudio dependency version.
+  * Audio policy signal updated.
+  * Audio routing now works correctly.
+
+ -- Stefan Kost <stefan.kost@nokia.com>  Thu, 15 Jan 2009 11:00:00 +0300
+
+fmtx-middleware (0.11) unstable; urgency=low
+
+  * Chirping now works when tx is enabled, but fmtx switch in alsa is "off" (happens when call is ongoing)
+
+ -- Stefan Kost <stefan.kost@nokia.com>  Fri, 2 Jan 2009 14:00:00 +0300
+
+fmtx-middleware (0.10) unstable; urgency=low
+
+  * Fixed retuning
+
+ -- Stefan Kost <stefan.kost@nokia.com>  Wed,  19 Dec 2008 16:00:00 +0300
+
+fmtx-middleware (0.9) unstable; urgency=low
+
+  * /dev/radio1 is now tried to be opened, if opening /dev/radio0 fails
+  * Frequency can now be set also when fmtx is off
+  * Fixes: NB#95779
+
+ -- Stefan Kost <stefan.kost@nokia.com>  Wed,  19 Dec 2008 14:00:00 +0300
+
+fmtx-middleware (0.8) unstable; urgency=low
+
+  * Updated to liblocation 0.92-4
+
+ -- Stefan Kost <stefan.kost@nokia.com>  Wed,  31 Oct 2008 12:00:00 +0300
+
+fmtx-middleware (0.7) unstable; urgency=low
+
+  * Fixed changelog
+
+ -- Stefan Kost <stefan.kost@nokia.com>  Wed,  31 Oct 2008 12:00:00 +0300
+
+fmtx-middleware (0.6) unstable; urgency=low
+
+  * FmTx state is now sent to policy fw
+
+ -- Stefan Kost <stefan.kost@nokia.com>  Wed,  31 Oct 2008 11:00:00 +0300
+
+fmtx-middleware (0.5) unstable; urgency=low
+
+  * Fixed startup if saved frequency is not allowed in current location
+  * Fixed behavior if fmtxd is killed
+  * Fixed lintian warnings
+
+ -- Stefan Kost <stefan.kost@nokia.com>  Wed,  8 Oct 2008 15:00:00 +0300
+
+fmtx-middleware (0.4) unstable; urgency=low
+
+  * Created postinstall script to install gconf schema
+  * Fixed dbus service file so that fmtxd can be start up automaticaly
+
+ -- Stefan Kost <stefan.kost@nokia.com>  Wed,  2 Oct 2008 15:00:00 +0300
+
+fmtx-middleware (0.3) unstable; urgency=low
+
+  * Fix for a bug that caused FmTx to crash when "state changed" signal was emitted.
+
+ -- Stefan Kost <stefan.kost@nokia.com>  Wed,  1 Oct 2008 11:00:00 +0300
+
+fmtx-middleware (0.2) unstable; urgency=low
+
+  * GConf support
+  * Initial country specific settings support
+
+ -- Stefan Kost <stefan.kost@nokia.com>  Wed,  11 Sep 2008 14:00:00 +0300
+
+fmtx-middleware (0.1) unstable; urgency=low
+
+  * Initial release
+
+ -- Stefan Kost <stefan.kost@nokia.com>  Fri,  18 Jul 2008 09:12:25 +0300

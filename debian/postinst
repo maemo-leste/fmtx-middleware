@@ -1,0 +1,5 @@
+#!/bin/sh
+
+gconf-schemas --register fmtx.schemas
+
+

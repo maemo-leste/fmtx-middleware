@@ -1,0 +1,20 @@
+<gconfschemafile>
+	<schemalist>
+		<schema>
+			<key>/schemas/system/fmtx/enabled</key>
+			<applyto>/system/fmtx/enabled</applyto>
+			<owner>fmtx</owner>
+			<type>bool</type>
+			<default>false</default>
+			<locale name="C"/>
+		</schema>
+		<schema>
+			<key>/schemas/system/fmtx/frequency</key>
+			<applyto>/system/fmtx/frequency</applyto>
+			<owner>fmtx</owner>
+			<type>int</type>
+			<default>88100</default>
+			<locale name="C"/>
+		</schema>
+	</schemalist>
+</gconfschemafile>

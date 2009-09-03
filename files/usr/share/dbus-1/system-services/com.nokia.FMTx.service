@@ -1,0 +1,4 @@
+[D-BUS Service]
+Name=com.nokia.FMTx
+Exec=/usr/sbin/fmtxd
+User=root
