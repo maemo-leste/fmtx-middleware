@@ -1,10 +1,23 @@
-fmtx-middleware (0.47+0m5) unstable; urgency=low
+fmtx-middleware (0.49+0m5) unstable; urgency=low
 
   * This entry has been added by BIFH queue processor
     Suffix +0m5 added to package revision
 
- -- Attiq Malik <ext-attiq.1.malik@nokia.com>  Thu, 03 Sep 2009 10:43:30 +0300
+ -- Harri Mahonen <ext-harri.mahonen@nokia.com>  Tue, 13 Oct 2009 17:23:44 +0300
 
+fmtx-middleware (0.49) unstable; urgency=low
+
+  * Fixes: NB#140231 - rds_text is not showing in RDS supported radio.
+
+ -- Maemo Multimedia <multimedia@maemo.org>  Fri, 29 Sep 2009 11:00:00 +0300
+ 
+fmtx-middleware (0.48) unstable; urgency=low
+
+  * Fixes: NB#134320 - FM Transmitter Unable to connect back to FMRX when FMRX powercyled.
+  * Fixes: NB#138786 - Sometimes unable to use FMTX
+
+ -- Maemo Multimedia <multimedia@maemo.org>  Fri, 25 Sep 2009 12:00:00 +0300
+ 
 fmtx-middleware (0.47) unstable; urgency=low
 
   * Fixes: NB#134388 - FMTX is enabled automatically
