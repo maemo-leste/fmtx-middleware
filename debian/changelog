@@ -1,102 +1,146 @@
-fmtx-middleware (0.55+0m5) unstable; urgency=low
+fmtx-middleware (0.62+0m5) unstable; urgency=low
 
   * This entry has been added by BIFH queue processor
-    Suffix +0m5 added to package revision
+    version has been changed to 0.62+0m5
 
- -- Marco Ballesio <marco.ballesio@nokia.com>  Thu, 25 Feb 2010 16:28:44 +0200
+ -- Lyubimkin Eugene <ext-lyubimkin.eugene@nokia.com>  Thu, 08 Jul 2010 17:18:25 +0300
+
+fmtx-middleware (0.62) unstable; urgency=low
+
+  * Fixes: NB#155783 - FMTX user space power level setting & FMTX disabling settings to correspond with driver
+  * Remade the changes to match 0.56 version
+
+ -- Maemo Multimedia <multimedia@maemo.org>  Wed, 07 Jul 2010 15:30:00 +0300
+ 
+fmtx-middleware (0.61) unstable; urgency=low
+
+  * Fixes: NB#155783 - FMTX user space power level setting & FMTX disabling settings to correspond with driver
+  * Changes between 0.56 and 0.60 are reverted since fmtx is broken after them
+
+ -- Maemo Multimedia <multimedia@maemo.org>  Wed, 07 Jul 2010 12:29:13 +0400
+
+fmtx-middleware (0.60) unstable; urgency=low
+
+  * Removed the source-code changes and use postinst-file for lock-file.
+
+ -- Maemo Multimedia <multimedia@maemo.org>  Thu, 1 Jul 2010 1:50:00 +0300
+ 
+fmtx-middleware (0.59) unstable; urgency=low
+
+  * Fixed the fmtx locking.
+
+ -- Maemo Multimedia <multimedia@maemo.org>  Wed, 30 Jun 2010 16:15:00 +0300
+ 
+fmtx-middleware (0.58) unstable; urgency=low
+
+  * Moved the fmtx locking to fmtx-daemon startup.
+
+ -- Maemo Multimedia <multimedia@maemo.org>  Wed, 30 Jun 2010 13:45:00 +0300
+
+fmtx-middleware (0.57) unstable; urgency=low
+
+  * Added the fmtx locking after installing.
+
+ -- Maemo Multimedia <multimedia@maemo.org>  Wed, 30 Jun 2010 11:00:00 +0300
+
+fmtx-middleware (0.56) unstable; urgency=low
+
+  * Fixes: NB#155783 - FMTX user space power level setting & FMTX disabling settings to correspond with driver
+
+ -- Maemo Multimedia <multimedia@maemo.org>  Thu, 24 Jun 2010 14:00:00 +0300
 
 fmtx-middleware (0.55) unstable; urgency=low
 
   * Fixes: NB#154132 - Music playback is paused, leave FMTx enabled for a while. Result - status menu and FM dialog acts slowly and laggy
 
  -- Maemo Multimedia <multimedia@maemo.org>  Fri, 19 Feb 2010 14:12:00 +0300
-	
+
 fmtx-middleware (0.54) unstable; urgency=low
 
   * Fixes: NB#143656 - fmtxd crash @ usb_event
 
  -- Maemo Multimedia <multimedia@maemo.org>  Wed, 3 Feb 2010 13:30:00 +0300
- 
+
 fmtx-middleware (0.53) unstable; urgency=low
 
   * Fixes: NB#153110 - fmtx_client should pad station names shorter than 8 chars with spaces
 
  -- Maemo Multimedia <multimedia@maemo.org>  Mon, 25 Jan 2010 16:30:00 +0300
- 
+
 fmtx-middleware (0.52) unstable; urgency=low
 
   * Fixes: NB#142486 - Not able to turn on FM transmitter if USB (charging mode) is connected
   * Fixes: NB#150044 - FMTx, FM transmitter enable itself after call.
 
  -- Maemo Multimedia <multimedia@maemo.org>  Thu, 10 Dec 2009 16:00:00 +0300
-  
+
 fmtx-middleware (0.51) unstable; urgency=low
 
   * Fixes: NB#141721 - FM transmitter is not enabling after disconnecting USB cable
   * Fixes: NB#146542 - USB cable plugged, enable FMT. Unplug USB cable, can't enable FMTx
 
  -- Maemo Multimedia <multimedia@maemo.org>  Tue, 8 Dec 2009 15:00:00 +0300
- 
+
 fmtx-middleware (0.50) unstable; urgency=low
 
-  * Fixes: NB#117996 - FM transmitter is not handled properly when BT headset is connected 
+  * Fixes: NB#117996 - FM transmitter is not handled properly when BT headset is connected
   * Improved headphone detection mechanism
 
  -- Maemo Multimedia <multimedia@maemo.org>  Thu, 5 Nov 2009 11:00:00 +0300
- 
+
 fmtx-middleware (0.49) unstable; urgency=low
 
   * Fixes: NB#140231 - rds_text is not showing in RDS supported radio.
 
  -- Maemo Multimedia <multimedia@maemo.org>  Fri, 29 Sep 2009 11:00:00 +0300
- 
+
 fmtx-middleware (0.48) unstable; urgency=low
 
   * Fixes: NB#134320 - FM Transmitter Unable to connect back to FMRX when FMRX powercyled.
   * Fixes: NB#138786 - Sometimes unable to use FMTX
 
  -- Maemo Multimedia <multimedia@maemo.org>  Fri, 25 Sep 2009 12:00:00 +0300
- 
+
 fmtx-middleware (0.47) unstable; urgency=low
 
   * Fixes: NB#134388 - FMTX is enabled automatically
 
  -- Maemo Multimedia <multimedia@maemo.org>  Wed, 2 Sep 2009 10:00:00 +0300
- 
+
 fmtx-middleware (0.46) unstable; urgency=low
 
   * Fixes: NB#134388 - FMTX is enabled automatically
 
  -- Maemo Multimedia <multimedia@maemo.org>  Fri, 21 Aug 2009 16:00:00 +0300
- 
+
 fmtx-middleware (0.45) unstable; urgency=low
 
   * Fixes: NB#133963 - FMTX power decreased incorrectly when charger is connected
   * Fixes: NB#133962 - Power values for ETSI must be read from calibration data
 
  -- Maemo Multimedia <multimedia@maemo.org>  Wed, 20 Aug 2009 9:00:00 +0300
- 
+
 fmtx-middleware (0.44) unstable; urgency=low
 
   * Fixes: NB#130610 - FM transmitter becomes frozen after 15 minutes of idle.
   * Fixes: NB#130602 - [REGF]FM TX work even after connecting the wired head set
 
  -- Maemo Multimedia <multimedia@maemo.org>  Fri, 14 Aug 2009 13:30:00 +0300
- 
+
 fmtx-middleware (0.43) unstable; urgency=low
 
   * Fixes: NB#125709 - Audio is not heard from device loud speaker when USB
     is connected and FMTX is disabled
 
  -- Maemo Multimedia <multimedia@maemo.org>  Sat, 8 Aug 2009 14:30:00 +0300
- 
+
 fmtx-middleware (0.42) unstable; urgency=low
 
   * Fixes: NB#128271 - FMTX does not stop sending signal in 60 seconds when
     audio modulation to signal has ended
 
  -- Maemo Multimedia <multimedia@maemo.org>  Fri, 17 Jul 2009 15:30:00 +0300
- 
+
 fmtx-middleware (0.41) unstable; urgency=low
 
   * Cleared RDS text at startup
@@ -104,7 +148,7 @@ fmtx-middleware (0.41) unstable; urgency=low
   * Fixes: NB#118497 - Low RDS Signal strength
 
  -- Maemo Multimedia <multimedia@maemo.org>  Wed, 8 Jul 2009 11:00:00 +0300
- 
+
 fmtx-middleware (0.40) unstable; urgency=low
 
   * Low RDS Signal strength fix
@@ -116,52 +160,52 @@ fmtx-middleware (0.39) unstable; urgency=low
   * Fixes: NB#123114 - FM-Tx channel spacing in FCC mode not correct
 
  -- Maemo Multimedia <multimedia@maemo.org>  Wed, 17 Jun 2009 13:30:00 +0300
- 
+
 fmtx-middleware (0.38) unstable; urgency=low
 
   * Fixed coverity warnings
 
  -- Maemo Multimedia <multimedia@maemo.org>  Wed, 10 Jun 2009 13:00:00 +0300
- 
+
 fmtx-middleware (0.37) unstable; urgency=low
 
   * Fixed coverity warnings
   * Updated documentation to gtk-doc style
 
  -- Maemo Multimedia <multimedia@maemo.org>  Thu, 4 Jun 2009 18:00:00 +0300
- 
+
 fmtx-middleware (0.36) unstable; urgency=low
 
   * Added documentation package
 
  -- Stefan Kost <stefan.kost@nokia.com>  Wed, 20 May 2009 17:00:00 +0300
- 
+
 fmtx-middleware (0.35) unstable; urgency=low
 
   * Fixes: NB#111298 - NP: Audio- While enabling FM transmitter UI "Disconnect charger from power supply to save energy" Info banner is displaying.
 
  -- Stefan Kost <stefan.kost@nokia.com>  Wed, 29 Apr 2009 17:00:00 +0300
- 
+
 fmtx-middleware (0.34) unstable; urgency=low
 
   * Fix FMTX audio routing the first time device is booted.
 
  -- Stefan Kost <stefan.kost@nokia.com>  Wed, 29 Apr 2009 17:00:00 +0300
- 
+
 fmtx-middleware (0.33) unstable; urgency=low
 
   * Internal tone generator is now used to generate chirping tone instead of using pilot tone
   * Fixes: NB#112307 - Fm-tx chirping feature implemented using old method
 
  -- Stefan Kost <stefan.kost@nokia.com>  Mon, 27 Apr 2009 13:30:00 +0300
- 
+
 fmtx-middleware (0.32) unstable; urgency=low
 
   * Changed default frequency to 88.1 MHz
   * Fixes: NB#107899 - FM-tx application frequencies
 
  -- Stefan Kost <stefan.kost@nokia.com>  Wed, 22 Apr 2009 15:00:00 +0300
- 
+
 fmtx-middleware (0.31) unstable; urgency=low
 
   * Pre-emphasis is now set
@@ -169,20 +213,20 @@ fmtx-middleware (0.31) unstable; urgency=low
   * Fixes: NB#108421 - Default setting for fmtx region must be changed
 
  -- Stefan Kost <stefan.kost@nokia.com>  Mon, 20 Apr 2009 12:00:00 +0300
- 
+
 fmtx-middleware (0.30) unstable; urgency=low
 
   * Removed dependency to libosso
   * New signal "Error" to inform UI when fmtx is shut down
 
  -- Stefan Kost <stefan.kost@nokia.com>  Wed, 15 Apr 2009 12:00:00 +0300
- 
+
 fmtx-middleware (0.29) unstable; urgency=low
 
   * Fixes: NB#109422 - 'Unable to use FM transmitter' displayed when trying to launch FM transmitter dialog from Media Player
 
  -- Stefan Kost <stefan.kost@nokia.com>  Tue, 14 Apr 2009 14:30:00 +0300
- 
+
 fmtx-middleware (0.28) unstable; urgency=low
 
   * Fixes: NB#107899 - FM-tx application frequencies
@@ -197,26 +241,26 @@ fmtx-middleware (0.27) unstable; urgency=low
   * Fixes: NB#106187 - FM-tx sending with low power with pilot disabled.
 
  -- Stefan Kost <stefan.kost@nokia.com>  Fri, 20 Mar 2009 12:00:00 +0300
- 
+
 fmtx-middleware (0.26) unstable; urgency=low
 
   * Locale directory changed
 
  -- Stefan Kost <stefan.kost@nokia.com>  Thu, 19 Mar 2009 12:00:00 +0300
- 
+
 fmtx-middleware (0.25) unstable; urgency=low
 
   * Version bump for integration
 
  -- Stefan Kost <stefan.kost@nokia.com>  Thu, 19 Mar 2009 11:00:00 +0300
- 
+
 fmtx-middleware (0.24) unstable; urgency=low
 
   * Fixes: NB#105426 - TV-out cable usage prevents FM transmitter usage
   * Added command line option -d to daemonize fmtxd at startup
 
  -- Stefan Kost <stefan.kost@nokia.com>  Thu, 12 Mar 2009 11:30:00 +0300
- 
+
 fmtx-middleware (0.23) unstable; urgency=low
 
   * Fixes: Fixed the startup script
