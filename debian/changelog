@@ -1,3 +1,12 @@
+fmtx-middleware (0.63) unstable; urgency=low
+
+  * Imported modified jacekowski fmtxd binary from http://jacekowski.org/Maemo/FMTXD1.3
+    Power level still set to 120, and it will not lock power
+    Region will automatically change to 4 ( full frequency range )
+    It will keep running when headphones/usb is plugged in
+
+ -- Pali Rohár <pali.rohar@gmail.com>  Sat, 09 Mar 2013 23:08:27 +0100
+
 fmtx-middleware (0.62+0m5) unstable; urgency=low
 
   * This entry has been added by BIFH queue processor
