@@ -1,3 +1,9 @@
+fmtx-middleware (0.63.1) unstable; urgency=low
+
+  * Reverted fmtxd back to 0.62 due to problems with US cal data 
+
+ -- Christian Ratzenhofer <christian.ratzenhofer@cdnm.at>  Wed,  1 Jan 2014 21:48:15 +0100
+
 fmtx-middleware (0.63) unstable; urgency=low
 
   * Imported modified jacekowski fmtxd binary from http://jacekowski.org/Maemo/FMTXD1.3
