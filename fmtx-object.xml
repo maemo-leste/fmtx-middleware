@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<node name="/com/nokia/FMTx">
+  <interface name="org.freedesktop.DBus.Properties">
+    <annotation name="org.freedesktop.DBus.GLib.CSymbol" value="dbus_glib_marshal_fmtx_object"/>
+    <method name="Get">
+      <arg type="s" name="Interface_Name" direction="in"/>
+      <arg type="s" name="Property_Name" direction="in"/>
+      <arg type="v" name="Value" direction="out"/>
+    </method>
+    <method name="Set">
+      <arg type="s" name="Interface_Name" direction="in"/>
+      <arg type="s" name="Property_Name" direction="in"/>
+      <arg type="v" name="Value" direction="in"/>
+    </method>
+    <method name="GetAll">
+      <arg type="s" name="Interface_Name" direction="in"/>
+      <arg type="a{sv}" name="Properties" direction="out"/>
+    </method>
+  </interface>
+  <interface name="com.nokia.FMTx.Device">
+    <signal name="Changed"/>
+    <signal name="Error">
+      <arg type="s" name="message" direction="out"/>
+    </signal>
+  </interface>
+  <interface name="com.nokia.policy">
+    <signal name="info"></signal>
+  </interface>
+  <interface name="com.nokia.FMTx.Device">
+    <property name="version" type="u" access="read"/>
+    <property name="frequency" type="u" access="readwrite"/>
+    <property name="freq_max" type="u" access="read"/>
+    <property name="freq_min" type="u" access="read"/>
+    <property name="freq_step" type="u" access="read"/>
+    <property name="state" type="s" access="readwrite"/>
+    <property name="startable" type="s" access="read"/>
+    <property name="rds_ps" type="s" access="readwrite"/>
+    <property name="rds_text" type="s" access="readwrite"/>
+  </interface>
+</node>
