@@ -3,7 +3,7 @@
 
 # export DH_VERBOSE=1
 
-CFLAGS = -Wall -ggdb -Wno-format-extra-args
+CFLAGS = -Wall -g -Werror
 
 DESTDIR = $(CURDIR)/debian/tmp
 
@@ -19,7 +19,7 @@ else
 endif
 
 build:
-	$(MAKE)
+	CFLAGS="$(CFLAGS)" $(MAKE)
 
 install: build
 	dh_testdir
@@ -44,7 +44,7 @@ binary: build install
 	dh_installchangelogs -pfmtx-middleware
 	dh_compress
 	dh_fixperms
-	dh_strip
+	dh_strip --dbg-package=fmtx-middleware-dbg
 	dh_makeshlibs
 	dh_shlibdeps
 	dh_installdeb
