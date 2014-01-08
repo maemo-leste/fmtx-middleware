@@ -15,5 +15,5 @@ Description: FMTX middleware
 Package: fmtx-middleware-dbg
 Architecture: any
 Section: devel
-Depends: fmtx-middleware (={$binary-version})
+Depends: fmtx-middleware (= ${binary:Version})
 Description: FMTX middleware debug symbols

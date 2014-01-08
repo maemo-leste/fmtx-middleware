@@ -1,3 +1,9 @@
+fmtx-middleware (0.64.1) unstable; urgency=low
+
+  * fix debian/control
+
+ -- Ivaylo Dimitrov <freemangordon@abv.bg>  Wed,  8 Jan 2014 16:11:52 +0200
+
 fmtx-middleware (0.64) unstable; urgency=low
 
   * FOSS rewrite initial release
