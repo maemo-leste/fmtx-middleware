@@ -1,13 +1,19 @@
 Source: fmtx-middleware
 Section: libs
 Priority: optional
-Maintainer: Stefan Kost <stefan.kost@nokia.com>
-Build-Depends: debhelper (>= 5)
+Maintainer: Ivaylo Dimitrv <freemangordon@abv.bg>
+Build-Depends: debhelper (>= 5), libcal-dev, libdbus-glib-1-dev, mce-dev, libasound2-dev, libgconf2-dev, libpulse-dev
 
 Package: fmtx-middleware
-Architecture: armel
+Architecture: any
 Depends: libasound2 (>> 1.0.18), libc6 (>= 2.5.0-1), libcal1, libdbus-1-3 (>= 1.1.4), libdbus-glib-1-2 (>= 0.76), libgconf2-6 (>= 2.13.5), libglib2.0-0 (>= 2.20.0), libpulse-mainloop-glib0, libpulse0, libpulse0 (>= 0.9.15~test5), pulseaudio, libdbus-glib-1-2 (>= 0.74), libgconf2-6 (>= 2.16), gconf2 (>= 2.16), libasound2 (>= 1.0.16), libpulse0 (>= 0.9.15~git20090113-0maemo1), libpulse-mainloop-glib0 (>= 0.9.15~git20090113-0maemo1), pulseaudio (>= 0.9.15~git20090113-0maemo1), libcal1 (>= 0.2.4)
 Description: FMTX middleware
  This package contains the FMTX middleware daemon for controlling FM
  transmitter. Package also contains fmtx_client program, which can be used to
  communicate with fmtx middleware to change settings of the FM transmitter.
+
+Package: fmtx-middleware-dbg
+Architecture: any
+Section: devel
+Depends: fmtx-middleware (={$binary-version})
+Description: FMTX middleware debug symbols
