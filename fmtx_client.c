@@ -128,7 +128,7 @@ int main(int argc, char **argv)
 
   for(i = 0; i < sizeof(properties) / sizeof(const char*); i++)
   {
-    gchar *s;
+    gchar *s = NULL;
 
     dbus_g_proxy_call(proxy, "Get", &error,
                       G_TYPE_STRING, "org.freedesktop.DBus.Properties",
