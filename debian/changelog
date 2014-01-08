@@ -1,3 +1,9 @@
+fmtx-middleware (0.64) unstable; urgency=low
+
+  * FOSS rewrite initial release
+
+ -- Ivaylo Dimitrov <freemangordon@abv.bg>  Wed,  8 Jan 2014 15:38:33 +0200
+
 fmtx-middleware (0.63.1) unstable; urgency=low
 
   * Reverted fmtxd back to 0.62 due to problems with US cal data 
