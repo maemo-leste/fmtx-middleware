@@ -87,7 +87,7 @@ fmtx_get_cal_power_level(const char *standard)
 
 
 static int
-fmtx_set_power_level(FmtxObject *obj, unsigned int level)
+fmtx_set_power_level(FmtxObject *obj, int level)
 {
   char buf[10];
   int fd;

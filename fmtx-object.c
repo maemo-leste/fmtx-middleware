@@ -81,7 +81,7 @@ int
 fmtx_set_rds_station_name(FmtxObject *obj, const char *rds_ps)
 {
   int fd;
-  int i;
+  size_t i;
   char buf[9];
 
   if(!rds_ps)

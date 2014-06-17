@@ -48,7 +48,8 @@ show_usage()
 int main(int argc, char **argv)
 {
   DBusGConnection *dbus;
-  int opt, i;
+  int opt;
+  size_t i;
   DBusGProxy *proxy;
 
   const char *const properties[]=
