@@ -284,16 +284,6 @@ bad_std:
 set_power:
   fmtx_set_power_level(obj, obj->max_power_level);
 
-  fd = open("/sys/bus/i2c/devices/2-0063/lock", 1);
-  if(fd == -1)
-    g_log(0, G_LOG_LEVEL_WARNING, "Could not open lock file\n");
-  else
-  {
-    if(write(fd, "1", 1) == -1)
-      g_log(0, G_LOG_LEVEL_WARNING, "Could not write lock file\n");
-    close(fd);
-  }
-
   fmtx_set_rds_station_name(obj, "Nokia   ");
 
   fmtx_set_rds_text(obj, " ");
