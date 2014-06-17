@@ -26,78 +26,6 @@ static void sig_device_mode_ind_cb(DBusGProxy *proxy, const char *valueName,
 }
 
 static void
-usb_device_1d6b_2_musb_hdrc_cb(DBusGProxy *proxy, const gchar *condition,
-                               const gchar *details, FmtxObject *obj)
-{
-  DBusGProxy *hal_proxy;
-  gchar *usb_state;
-  GError *err = NULL;
-
-  hal_proxy = dbus_g_proxy_new_for_name(
-         obj->dbus,
-         "org.freedesktop.Hal",
-         "/org/freedesktop/Hal/devices/usb_device_1d6b_2_musb_hdrc",
-         "org.freedesktop.Hal.Device");
-  if(hal_proxy)
-  {
-    dbus_g_proxy_call(hal_proxy,
-                      "GetPropertyString", &err,
-                      G_TYPE_STRING, "usb_device.mode", G_TYPE_INVALID,
-                      G_TYPE_STRING, &usb_state, G_TYPE_INVALID);
-    if ( err )
-    {
-      log_error("Unable to get device state", "", 0);
-      g_clear_error(&err);
-    }
-    else
-    {
-      g_object_unref(hal_proxy);
-
-      if(g_str_equal("b_idle", usb_state))
-      {
-        obj->usb_connected = 0;
-        if(obj->active && !obj->hp_connected && !obj->call_active)
-        {
-          if(obj->idle_timeout)
-          {
-            g_source_remove(obj->idle_timeout);
-            obj->idle_timeout = 0;
-          }
-
-          obj->active = 0;
-          fmtx_enable(obj, 1);
-          g_idle_add(emit_changed, obj);
-          g_idle_add((GSourceFunc)emit_info, obj);
-        }
-      }
-      else
-      {
-        obj->usb_connected = 1;
-
-        if(g_str_equal(obj->state, "enabled"))
-        {
-          g_signal_emit(obj, FMTX_OBJECT_GET_CLASS(obj)->error, 0,
-                        "fmtx_ni_usb_error");
-          fmtx_enable(obj, 0);
-          g_idle_add(emit_changed, obj);
-          g_idle_add((GSourceFunc)emit_info, obj);
-          obj->active = 1;
-
-          if(obj->idle_timeout)
-            obj->idle_timeout =
-                g_timeout_add_seconds(300,
-                                      (GSourceFunc)idle_timeout_cb,
-                                      obj);
-        }
-      }
-    }
-  }
-  else
-    log_error("Couldn't create the proxy object",
-              "Unknown(dbus_g_proxy_new_for_name)", 0);
-}
-
-static void
 platform_soc_audio_logicaldev_input_cb(DBusGProxy *proxy,
                                        const gchar *condition,
                                        const gchar *details,
@@ -159,7 +87,7 @@ platform_soc_audio_logicaldev_input_cb(DBusGProxy *proxy,
   {
     obj->hp_connected = 0;
 
-    if ( obj->active && !obj->usb_connected && !obj->call_active )
+    if ( obj->active && !obj->call_active )
     {
       if(obj->idle_timeout)
       {
@@ -229,7 +157,7 @@ sig_call_state_ind_cb(DBusGProxy *proxy, const gchar *call_state,
   else
   {
     obj->call_active = FALSE;
-    if(obj->active && !obj->usb_connected && !obj->hp_connected)
+    if(obj->active && !obj->hp_connected)
     {
       if(obj->idle_timeout)
       {
@@ -308,23 +236,6 @@ connect_dbus_signals(DBusGConnection *dbus, FmtxObject *obj)
   if (!g_str_equal("normal", s))
     obj->offline = TRUE;
   g_free(s);
-
-  proxy = dbus_g_proxy_new_for_name(
-         dbus,
-         "org.freedesktop.Hal",
-         "/org/freedesktop/Hal/devices/usb_device_1d6b_2_musb_hdrc",
-         "org.freedesktop.Hal.Device");
-
-  if(!proxy)
-    goto err;
-
-  dbus_g_proxy_add_signal(proxy, "Condition",
-                          G_TYPE_STRING, G_TYPE_STRING,
-                          G_TYPE_INVALID);
-  dbus_g_proxy_connect_signal(proxy, "Condition",
-                              (GCallback)usb_device_1d6b_2_musb_hdrc_cb,
-                              obj, NULL);
-  usb_device_1d6b_2_musb_hdrc_cb(0, 0, 0, obj);
 
   return;
 

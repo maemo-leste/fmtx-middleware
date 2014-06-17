@@ -50,7 +50,6 @@ struct _FmtxObject
   char *rds_text;
   gboolean offline;
   gboolean hp_connected;
-  gboolean usb_connected;
   gboolean pa_running;
   gboolean call_active;
   int dev_radio;

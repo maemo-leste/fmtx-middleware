@@ -123,7 +123,7 @@ fmtx_enable(FmtxObject *fmtx, gboolean enable)
     {
       if(!g_str_equal(fmtx->state, "enabled"))
       {
-        if ( fmtx->offline || fmtx->hp_connected || fmtx->usb_connected )
+        if ( fmtx->offline || fmtx->hp_connected )
         {
           fmtx_set_mute(fmtx, TRUE);
           g_free(fmtx->state);
@@ -187,7 +187,6 @@ fmtx_toggle_pilot(FmtxObject *fmtx)
        fmtx->pa_running &&
        !fmtx->offline &&
        !fmtx->hp_connected &&
-       !fmtx->usb_connected &&
        !fmtx->call_active)
     {
       if(fmtx->idle_timeout)

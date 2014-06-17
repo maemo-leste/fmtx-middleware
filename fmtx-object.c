@@ -189,10 +189,8 @@ dbus_glib_marshal_fmtx_object_get(FmtxObject *obj,
       startable = 0;
     }
 
-    if(obj->usb_connected)
-      g_value_set_string(&v, "Usb device is connected");
-    else if(startable)
-        g_value_set_string(&v, "true");
+    if(startable)
+      g_value_set_string(&v, "true");
 
     rv = TRUE;
   }
@@ -295,9 +293,6 @@ dbus_glib_marshal_fmtx_object_set(FmtxObject *obj,
       if(obj->hp_connected)
         g_set_error(error, DBUS_GERROR, DBUS_GERROR_FAILED,
                     "Headphones are connected");
-      if(obj->usb_connected)
-        g_set_error(error, DBUS_GERROR, DBUS_GERROR_FAILED,
-                    "Usb device is connected");
       res = fmtx_enable(obj, TRUE);
     }
     else
@@ -413,7 +408,6 @@ fmtx_object_init(FmtxObject *obj, gpointer iface_data)
   obj->freq_step = 100;
   obj->dev_radio = -1;
   obj->offline = FALSE;
-  obj->usb_connected = FALSE;
   obj->call_active = FALSE;
   obj->hp_connected = FALSE;
   obj->state = g_strdup("initializing");
