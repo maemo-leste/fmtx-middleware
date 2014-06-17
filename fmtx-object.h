@@ -52,7 +52,6 @@ struct _FmtxObject
   gboolean hp_connected;
   gboolean usb_connected;
   gboolean pa_running;
-  gboolean charger_connected;
   gboolean call_active;
   int dev_radio;
   gboolean mixer_inited;

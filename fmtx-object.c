@@ -421,7 +421,6 @@ fmtx_object_init(FmtxObject *obj, gpointer iface_data)
   obj->rds_text = g_strdup("");
   obj->mixer_inited = FALSE;
   obj->pa_running = FALSE;
-  obj->charger_connected = FALSE;
   obj->mixer_elem = 0;
   obj->active = FALSE;
   obj->idle_timeout = 0;

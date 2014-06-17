@@ -25,50 +25,6 @@ static void sig_device_mode_ind_cb(DBusGProxy *proxy, const char *valueName,
   }
 }
 
-static int
-read_file_char(const char *file)
-{
-  int fd;
-  int rv;
-  char buf[8];
-
-  errno = 0;
-  fd = open(file, O_RDONLY);
-
-  if(fd == -1)
-    return -1;
-
-  if(read(fd, buf, sizeof(buf)) <= 0)
-    return -1;
-
-  rv = buf[0] - '0';
-  close(fd);
-
-  return rv;
-}
-
-static void
-charger_connected_cb(DBusGProxy *proxy, FmtxObject *obj)
-{
-  unsigned int pwlvl;
-
-  pwlvl = 88;
-  obj->charger_connected = TRUE;
-
-  /* FIXME ioctl code */
-  if(g_str_equal(obj->state, "enabled"))
-    ioctl(obj->dev_radio, 0x400476C0, &pwlvl);
-}
-
-static void
-charger_disconnected_cb(DBusGProxy *proxy, FmtxObject *obj)
-{
-  obj->charger_connected = 0;
-  /* FIXME ioctl code */
-  if(g_str_equal(obj->state, "enabled"))
-    ioctl(obj->dev_radio, 0x400476C1, &obj->power_level);
-}
-
 static void
 usb_device_1d6b_2_musb_hdrc_cb(DBusGProxy *proxy, const gchar *condition,
                                const gchar *details, FmtxObject *obj)
@@ -292,7 +248,6 @@ void
 connect_dbus_signals(DBusGConnection *dbus, FmtxObject *obj)
 {
   DBusGProxy *proxy;
-  int vbus;
   gchar *s;
   GError *err = NULL;
 
@@ -370,33 +325,6 @@ connect_dbus_signals(DBusGConnection *dbus, FmtxObject *obj)
                               (GCallback)usb_device_1d6b_2_musb_hdrc_cb,
                               obj, NULL);
   usb_device_1d6b_2_musb_hdrc_cb(0, 0, 0, obj);
-
-  proxy = dbus_g_proxy_new_for_name(dbus,
-                                    "com.nokia.bme",
-                                    "/com/nokia/bme/signal",
-                                    "com.nokia.bme.signal");
-  if(!proxy)
-    goto err;
-
-  dbus_g_proxy_add_signal(proxy, "charger_connected", G_TYPE_INVALID);
-  dbus_g_proxy_connect_signal(proxy, "charger_connected",
-                              (GCallback)charger_connected_cb,
-                              obj, NULL);
-  dbus_g_proxy_add_signal(proxy, "charger_disconnected", G_TYPE_INVALID);
-  dbus_g_proxy_connect_signal(proxy, "charger_disconnected",
-                              (GCallback)charger_disconnected_cb,
-                              obj, NULL);
-
-  vbus = read_file_char("/sys/class/i2c-adapter/i2c-1/1-0048/twl4030_usb/vbus");
-  if(vbus < 0)
-    vbus = read_file_char("/tmp/dummy.vbus");
-
-  if( vbus > 0)
-  {
-    if(read_file_char("/sys/devices/platform/musb_hdrc/charger") < 0)
-      read_file_char("/tmp/dummy.charger");
-    charger_connected_cb(0, obj);
-  }
 
   return;
 
