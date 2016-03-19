@@ -65,6 +65,7 @@ fmtx_get_cal_power_level(const char *standard)
   if(cal_read_block(cal, "fmtx_pwl", &fmtx_pwl, &len, 0) < 0)
   {
     g_log(0, G_LOG_LEVEL_WARNING, "CAL: failed to read fmtx_pwl from cal\n");
+    cal_finish(cal);
     return 0;
   }
 
