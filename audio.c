@@ -51,8 +51,7 @@ fmtx_set_mute(FmtxObject *obj, int value)
 {
   struct v4l2_control ctl;
 
-  /* FIXME */
-  ctl.id = 0x980909u;
+  ctl.id = V4L2_CID_AUDIO_MUTE;
   ctl.value = value;
 
   if(ioctl(obj->dev_radio, VIDIOC_S_CTRL, &ctl) < 0)
