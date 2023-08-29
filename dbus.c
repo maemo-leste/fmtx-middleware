@@ -1,22 +1,24 @@
-#include <sys/ioctl.h>
 #include <mce/dbus-names.h>
 #include <mce/mode-names.h>
+#include <sys/ioctl.h>
 
-#include "fmtx-object.h"
-#include "dbus.h"
 #include "audio.h"
+#include "dbus.h"
+#include "fmtx-object.h"
 
-static void sig_device_mode_ind_cb(DBusGProxy *proxy, const char *valueName,
-                                   FmtxObject *obj)
+static void
+sig_device_mode_ind_cb(DBusGProxy *proxy, const char *valueName,
+                       FmtxObject *obj)
 {
-  if ( g_str_equal(MCE_NORMAL_MODE, valueName) )
+  if (g_str_equal(MCE_NORMAL_MODE, valueName))
   {
     obj->offline = 0;
   }
   else
   {
     obj->offline = 1;
-    if ( g_str_equal(obj->state, "enabled") )
+
+    if (g_str_equal(obj->state, "enabled"))
     {
       fmtx_enable(obj, FALSE);
       g_idle_add(emit_changed, obj);
@@ -36,13 +38,13 @@ platform_soc_audio_logicaldev_input_cb(DBusGProxy *proxy,
   GPtrArray *array = NULL;
 
   hal_proxy =
-      dbus_g_proxy_new_for_name(
-        obj->dbus,
-        "org.freedesktop.Hal",
-        "/org/freedesktop/Hal/devices/platform_soc_audio_logicaldev_input",
-        "org.freedesktop.Hal.Device");
+    dbus_g_proxy_new_for_name(
+      obj->dbus,
+      "org.freedesktop.Hal",
+      "/org/freedesktop/Hal/devices/platform_soc_audio_logicaldev_input",
+      "org.freedesktop.Hal.Device");
 
-  if ( !hal_proxy )
+  if (!hal_proxy)
   {
     log_error("Couldn't create the proxy object",
               "Unknown(dbus_g_proxy_new_for_name)", 0);
@@ -56,18 +58,18 @@ platform_soc_audio_logicaldev_input_cb(DBusGProxy *proxy,
 
   g_object_unref(hal_proxy);
 
-  if(error)
+  if (error)
   {
     log_error("Unable to get headphone connector state", "", 0);
     g_clear_error(&error);
     return;
   }
 
-  if(array->len)
+  if (array->len)
   {
     obj->hp_connected = TRUE;
 
-     if(g_str_equal(obj->state, "enabled"))
+    if (g_str_equal(obj->state, "enabled"))
     {
       g_signal_emit(obj, FMTX_OBJECT_GET_CLASS(obj)->error, 0,
                     "fmtx_ni_cable_error");
@@ -75,9 +77,9 @@ platform_soc_audio_logicaldev_input_cb(DBusGProxy *proxy,
       g_idle_add(emit_changed, obj);
       g_idle_add((GSourceFunc)emit_info, obj);
 
-     obj->active = TRUE;
+      obj->active = TRUE;
 
-     if (!obj->idle_timeout)
+      if (!obj->idle_timeout)
         obj->idle_timeout = g_timeout_add_seconds(300,
                                                   (GSourceFunc)idle_timeout_cb,
                                                   obj);
@@ -87,9 +89,9 @@ platform_soc_audio_logicaldev_input_cb(DBusGProxy *proxy,
   {
     obj->hp_connected = 0;
 
-    if ( obj->active && !obj->call_active )
+    if (obj->active && !obj->call_active)
     {
-      if(obj->idle_timeout)
+      if (obj->idle_timeout)
       {
         g_source_remove(obj->idle_timeout);
         obj->idle_timeout = 0;
@@ -106,49 +108,56 @@ platform_soc_audio_logicaldev_input_cb(DBusGProxy *proxy,
 }
 
 static void
-g_cclosure_user_marshal_VOID__STRING_STRING (GClosure * closure,
-					     GValue * return_value,
-					     guint n_param_values,
-					     const GValue * param_values,
-					     gpointer invocation_hint,
-					     gpointer marshal_data) {
-	typedef void (*GMarshalFunc_VOID__STRING_STRING) (gpointer data1,
-							  const char* arg_1,
-							  const char* arg_2,
-							  gpointer data2);
-	register GMarshalFunc_VOID__STRING_STRING callback;
-	register GCClosure * cc;
-	register gpointer data1;
-	register gpointer data2;
-	cc = (GCClosure *) closure;
-	g_return_if_fail (n_param_values == 3);
-	if (G_CCLOSURE_SWAP_DATA (closure)) {
-		data1 = closure->data;
-		data2 = param_values->data[0].v_pointer;
-	} else {
-		data1 = param_values->data[0].v_pointer;
-		data2 = closure->data;
-	}
-	callback = (GMarshalFunc_VOID__STRING_STRING)
-	    (marshal_data ? marshal_data : cc->callback);
-	callback (data1, g_value_get_string (param_values + 1),
-		  g_value_get_string (param_values + 2), data2);
+g_cclosure_user_marshal_VOID__STRING_STRING (GClosure *closure,
+                                             GValue *return_value,
+                                             guint n_param_values,
+                                             const GValue *param_values,
+                                             gpointer invocation_hint,
+                                             gpointer marshal_data) {
+  typedef void (*GMarshalFunc_VOID__STRING_STRING)(gpointer data1,
+                                                   const char *arg_1,
+                                                   const char *arg_2,
+                                                   gpointer data2);
+  register GMarshalFunc_VOID__STRING_STRING callback;
+  register GCClosure *cc;
+  register gpointer data1;
+  register gpointer data2;
+  cc = (GCClosure *)closure;
+  g_return_if_fail(n_param_values == 3);
+
+  if (G_CCLOSURE_SWAP_DATA(closure))
+  {
+    data1 = closure->data;
+    data2 = param_values->data[0].v_pointer;
+  }
+  else
+  {
+    data1 = param_values->data[0].v_pointer;
+    data2 = closure->data;
+  }
+
+  callback = (GMarshalFunc_VOID__STRING_STRING)
+    (marshal_data ? marshal_data : cc->callback);
+  callback(data1, g_value_get_string(param_values + 1),
+           g_value_get_string(param_values + 2), data2);
 }
 
 static void
 sig_call_state_ind_cb(DBusGProxy *proxy, const gchar *call_state,
                       const gchar *call_e_state, FmtxObject *obj)
 {
-  if(g_str_equal(MCE_CALL_STATE_ACTIVE, call_state))
+  if (g_str_equal(MCE_CALL_STATE_ACTIVE, call_state))
   {
     obj->call_active = TRUE;
-    if(g_str_equal(obj->state, "enabled"))
+
+    if (g_str_equal(obj->state, "enabled"))
     {
       fmtx_enable(obj, FALSE);
       g_idle_add(emit_changed, obj);
       g_idle_add((GSourceFunc)emit_info, obj);
       obj->active = TRUE;
-      if(!obj->idle_timeout)
+
+      if (!obj->idle_timeout)
         obj->idle_timeout = g_timeout_add_seconds(300u,
                                                   (GSourceFunc)idle_timeout_cb,
                                                   obj);
@@ -157,13 +166,15 @@ sig_call_state_ind_cb(DBusGProxy *proxy, const gchar *call_state,
   else
   {
     obj->call_active = FALSE;
-    if(obj->active && !obj->hp_connected)
+
+    if (obj->active && !obj->hp_connected)
     {
-      if(obj->idle_timeout)
+      if (obj->idle_timeout)
       {
         g_source_remove(obj->idle_timeout);
         obj->idle_timeout = 0;
       }
+
       obj->active = FALSE;
       fmtx_enable(obj, TRUE);
       g_idle_add(emit_changed, obj);
@@ -181,12 +192,12 @@ connect_dbus_signals(DBusGConnection *dbus, FmtxObject *obj)
 
   err = 0;
   proxy = dbus_g_proxy_new_for_name(
-        dbus,
-        "org.freedesktop.Hal",
-        "/org/freedesktop/Hal/devices/platform_soc_audio_logicaldev_input",
-        "org.freedesktop.Hal.Device");
+      dbus,
+      "org.freedesktop.Hal",
+      "/org/freedesktop/Hal/devices/platform_soc_audio_logicaldev_input",
+      "org.freedesktop.Hal.Device");
 
-  if(!proxy)
+  if (!proxy)
     goto err;
 
   dbus_g_proxy_add_signal(proxy, "Condition",
@@ -200,7 +211,8 @@ connect_dbus_signals(DBusGConnection *dbus, FmtxObject *obj)
                                     MCE_SERVICE,
                                     MCE_SIGNAL_PATH,
                                     MCE_SIGNAL_IF);
-  if(!proxy)
+
+  if (!proxy)
     goto err;
 
   dbus_g_proxy_add_signal(proxy, MCE_DEVICE_MODE_SIG,
@@ -209,8 +221,8 @@ connect_dbus_signals(DBusGConnection *dbus, FmtxObject *obj)
                               (GCallback)sig_device_mode_ind_cb,
                               obj, NULL);
   dbus_g_object_register_marshaller(
-        (GClosureMarshal)g_cclosure_user_marshal_VOID__STRING_STRING,
-        G_TYPE_NONE, G_TYPE_STRING, G_TYPE_STRING,G_TYPE_INVALID);
+    (GClosureMarshal)g_cclosure_user_marshal_VOID__STRING_STRING,
+    G_TYPE_NONE, G_TYPE_STRING, G_TYPE_STRING, G_TYPE_INVALID);
   dbus_g_proxy_add_signal(proxy, MCE_CALL_STATE_SIG,
                           G_TYPE_STRING, G_TYPE_STRING, G_TYPE_INVALID);
   dbus_g_proxy_connect_signal(proxy, MCE_CALL_STATE_SIG,
@@ -220,29 +232,32 @@ connect_dbus_signals(DBusGConnection *dbus, FmtxObject *obj)
                                     MCE_SERVICE,
                                     MCE_REQUEST_PATH,
                                     MCE_REQUEST_IF);
-  if(!proxy)
+
+  if (!proxy)
     goto err;
 
   dbus_g_proxy_call(proxy, MCE_DEVICE_MODE_GET, &err,
                     G_TYPE_STRING, MCE_REQUEST_IF, G_TYPE_INVALID,
                     G_TYPE_STRING, &s, G_TYPE_INVALID);
 
-  if(err)
+  if (err)
   {
     log_error("Unable to get device state", "", 0);
     g_clear_error(&err);
     return;
   }
+
   if (!g_str_equal("normal", s))
     obj->offline = TRUE;
+
   g_free(s);
 
   return;
 
 err:
-    log_error("Couldn't create the proxy object",
-              "Unknown(dbus_g_proxy_new_for_name)", FALSE);
+  log_error("Couldn't create the proxy object",
+            "Unknown(dbus_g_proxy_new_for_name)", FALSE);
 
-    g_free(obj->state);
-    obj->state = g_strdup("error");
+  g_free(obj->state);
+  obj->state = g_strdup("error");
 }

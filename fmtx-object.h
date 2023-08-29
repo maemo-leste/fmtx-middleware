@@ -2,26 +2,26 @@
 #define __FMTX_H_INCLUDED__
 
 #include <asoundlib.h>
-#include <glib.h>
-#include <gconf/gconf-client.h>
 #include <dbus/dbus-glib.h>
+#include <gconf/gconf-client.h>
+#include <glib.h>
 #include <pulse/pulseaudio.h>
 
 #define FMTX_MAX_RDS_TEXT 64
 #define FMTX_SYSFS_NODE "/sys/bus/i2c/devices/2-0063/"
 
 #define WRITE_FMTX_SYSFS(file, val, err_msg) \
-{ \
-  int fd = open(FMTX_SYSFS_NODE file, O_WRONLY); \
-  if(fd == -1) \
-    perror("fmtxd Error opening " file " file"); \
-  else \
   { \
-    if(write(fd, val, sizeof(val)) == -1) \
-      perror(err_msg); \
-    close(fd); \
-  } \
-}
+    int fd = open(FMTX_SYSFS_NODE file, O_WRONLY); \
+    if (fd == -1) \
+      perror("fmtxd Error opening " file " file"); \
+    else \
+    { \
+      if (write(fd, val, sizeof(val)) == -1) \
+        perror(err_msg); \
+      close(fd); \
+    } \
+  }
 
 #define FMTX_OBJECT_TYPE (fmtx_object_get_type())
 
@@ -29,7 +29,7 @@
 #define FMTX_OBJECT_CLASS(klass) \
   G_TYPE_CHECK_CLASS_CAST(klass, fmtx_object_get_type(), FmtxObjectClass)
 #define FMTX_OBJECT_GET_CLASS(obj) \
-  (G_TYPE_INSTANCE_GET_CLASS ((obj), FMTX_OBJECT_TYPE, FmtxObjectClass))
+  (G_TYPE_INSTANCE_GET_CLASS((obj), FMTX_OBJECT_TYPE, FmtxObjectClass))
 
 typedef struct _FmtxObject FmtxObject;
 typedef struct _FmtxObjectClass FmtxObjectClass;
@@ -72,15 +72,24 @@ struct _FmtxObjectClass
   int info;
 };
 
-GType fmtx_object_get_type();
-gboolean emit_changed(gpointer obj);
-gboolean emit_info(gpointer obj);
-void exit_timeout_cb(FmtxObject *obj);
-int fmtx_enable(FmtxObject *fmtx, gboolean enable);
-int fmtx_set_frequency(FmtxObject *fmtx, unsigned int frequency);
-int fmtx_set_rds_station_name(FmtxObject *obj, const char *rds_ps);
-int fmtx_set_rds_text(FmtxObject *obj, const char *rds_text);
+GType
+fmtx_object_get_type();
+gboolean
+emit_changed(gpointer obj);
+gboolean
+emit_info(gpointer obj);
+void
+exit_timeout_cb(FmtxObject *obj);
+int
+fmtx_enable(FmtxObject *fmtx, gboolean enable);
+int
+fmtx_set_frequency(FmtxObject *fmtx, unsigned int frequency);
+int
+fmtx_set_rds_station_name(FmtxObject *obj, const char *rds_ps);
+int
+fmtx_set_rds_text(FmtxObject *obj, const char *rds_text);
 
-void log_error(const char *msg, const char *reason, gboolean quit);
+void
+log_error(const char *msg, const char *reason, gboolean quit);
 
 #endif /* __FMTX_H_INCLUDED__ */
