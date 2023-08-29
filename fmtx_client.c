@@ -70,7 +70,6 @@ main(int argc, char **argv)
   GValue value = { 0, };
   GError *error = NULL;
 
-  g_type_init();
   show_usage();
 
   dbus = dbus_g_bus_get(DBUS_BUS_SYSTEM, &error);

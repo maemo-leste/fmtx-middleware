@@ -1,5 +1,8 @@
 #ifndef __FMTXD_AUDIO_H_INCLUDED__
 #define __FMTXD_AUDIO_H_INCLUDED__
+
+#include "fmtx-object.h"
+
 void
 register_pa(FmtxObject *obj);
 gboolean

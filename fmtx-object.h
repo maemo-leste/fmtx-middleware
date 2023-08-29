@@ -1,7 +1,7 @@
 #ifndef __FMTX_H_INCLUDED__
 #define __FMTX_H_INCLUDED__
 
-#include <asoundlib.h>
+#include <alsa/asoundlib.h>
 #include <dbus/dbus-glib.h>
 #include <gconf/gconf-client.h>
 #include <glib.h>

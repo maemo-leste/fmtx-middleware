@@ -1,6 +1,8 @@
 #include "fmtx-object.h"
 #include <glib.h>
 
+G_DEFINE_TYPE(FmtxObject, fmtx_object, G_TYPE_OBJECT);
+
 gboolean
 emit_changed(gpointer obj)
 {
@@ -397,10 +399,8 @@ dbus_glib_marshal_fmtx_object_get_all(FmtxObject *obj,
 
 #include "fmtx-object-bindings.h"
 
-gpointer parent_class = NULL;
-
 static void
-fmtx_object_init(FmtxObject *obj, gpointer iface_data)
+fmtx_object_init(FmtxObject *obj)
 {
   g_assert(obj != NULL);
 
@@ -427,12 +427,8 @@ fmtx_object_init(FmtxObject *obj, gpointer iface_data)
 }
 
 static void
-fmtx_object_class_init(FmtxObjectClass *klass, gpointer a2)
+fmtx_object_class_init(FmtxObjectClass *klass)
 {
-  g_assert(klass != NULL);
-
-  parent_class = g_type_class_peek_parent(klass);
-
   klass->changed = g_signal_new(
       "changed",
       G_OBJECT_CLASS_TYPE(klass),
@@ -464,23 +460,4 @@ fmtx_object_class_init(FmtxObjectClass *klass, gpointer a2)
 
   dbus_g_object_type_install_info(FMTX_OBJECT_TYPE,
                                   &dbus_glib_fmtx_object_object_info);
-}
-
-GType
-fmtx_object_get_type()
-{
-  static volatile GType fmtx_type;
-
-  if (!fmtx_type && g_once_init_enter_impl(&fmtx_type))
-    g_once_init_leave(&fmtx_type,
-                      g_type_register_static_simple(
-                        G_TYPE_OBJECT,
-                        g_intern_static_string("FmtxObject"),
-                        sizeof(FmtxObjectClass),
-                        (GClassInitFunc)fmtx_object_class_init,
-                        sizeof(FmtxObject),
-                        (GInstanceInitFunc)fmtx_object_init,
-                        0));
-
-  return fmtx_type;
 }

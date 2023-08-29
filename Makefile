@@ -1,14 +1,15 @@
 all: fmtx-object-bindings.h fmtxd fmtx_client
 
 fmtxd: fmtx-object.c main.c audio.c dbus.c
-	$(CC) $(CFLAGS) $(shell pkg-config --cflags --libs libcal dbus-1 \
-	glib-2.0 gconf-2.0 libpulse libpulse-mainloop-glib alsa) $^ -o $@
+	$(CC) $(CFLAGS) $^ $(shell pkg-config --cflags --libs libcal dbus-1 \
+	glib-2.0 gconf-2.0 libpulse libpulse-mainloop-glib alsa dbus-glib-1) \
+	-lm -o $@
 
 fmtx-object-bindings.h: fmtx-object.xml
 	dbus-binding-tool --mode=glib-server --prefix=fmtx_object $< --output=$@
 
 fmtx_client: fmtx_client.c
-	$(CC) $(CFLAGS) $(shell pkg-config --cflags --libs dbus-glib-1) $^ -o $@
+	$(CC) $(CFLAGS) $^ $(shell pkg-config --cflags --libs dbus-glib-1 glib-2.0) -o $@
 clean:
 	$(RM) *.o fmtx-object-bindings.h fmtxd fmtx_client
 

@@ -2,7 +2,7 @@
 #include <errno.h>
 #include <glib/gprintf.h>
 #include <libintl.h>
-#include <linux/videodev.h>
+#include <linux/videodev2.h>
 #include <locale.h>
 #include <string.h>
 #include <sys/ioctl.h>
@@ -469,9 +469,7 @@ deflocale:
     fclose(fp);
   }
 
-  g_type_init();
-
-  fmtx = (FmtxObject *)g_object_new(FMTX_OBJECT_TYPE, 0);
+  fmtx = (FmtxObject *)g_object_new(FMTX_OBJECT_TYPE, NULL);
 
   if (!fmtx)
     log_error("Failed to create one Value instance.", "Unknown(OOM?)", TRUE);

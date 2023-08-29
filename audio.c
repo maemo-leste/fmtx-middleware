@@ -1,6 +1,7 @@
 #include <glib.h>
 #include <glib/gprintf.h>
-#include <linux/videodev.h>
+#include <linux/videodev2.h>
+#include <math.h>
 #include <pulse/glib-mainloop.h>
 #include <pulse/pulseaudio.h>
 #include <sys/ioctl.h>
@@ -62,7 +63,7 @@ int
 fmtx_set_frequency(FmtxObject *fmtx, unsigned int frequency)
 {
   unsigned int f;
-  struct video_tuner tun;
+  struct v4l2_tuner tun;
   GError *err = NULL;
 
   if (fmtx->dev_radio < 0)
@@ -94,19 +95,26 @@ fmtx_set_frequency(FmtxObject *fmtx, unsigned int frequency)
   if (!g_str_equal(fmtx->state, "enabled"))
     return 2;
 
-  tun.tuner = 0;
+  tun.index = 0;
 
-  if ((ioctl(fmtx->dev_radio, VIDIOCSTUNER, &tun) >= 0) &&
-      (ioctl(fmtx->dev_radio, VIDIOCGTUNER, &tun) >= 0))
+  if ((ioctl(fmtx->dev_radio, VIDIOC_S_TUNER, &tun) >= 0) &&
+      (ioctl(fmtx->dev_radio, VIDIOC_G_TUNER, &tun) >= 0))
   {
-    f = rint((tun.flags & VIDEO_TUNER_LOW ? 16000.0 : 16.0) *
+    struct v4l2_frequency freq;
+
+    f = rint((tun.capability & V4L2_TUNER_CAP_LOW ? 16000.0 : 16.0) *
              (long double)fmtx->frequency / 1000.0);
 
-    if (ioctl(fmtx->dev_radio, VIDIOCSFREQ, &f) >= 0)
+    freq.tuner = tun.index;
+    freq.type = tun.type;
+    freq.frequency = f;
+
+    if (ioctl(fmtx->dev_radio, VIDIOC_S_FREQUENCY, &freq) >= 0)
       return 2;
   }
 
   perror("fmtxd Could not set frequency");
+
   return 1;
 }
 
